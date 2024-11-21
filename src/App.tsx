@@ -18,7 +18,7 @@ function App() {
   return (
     <main class="grid grid-rows-[auto_1fr] h-screen">
       <TitleBar />
-      <div class="grid grid-cols-[4rem_1fr]">
+      <div class="grid grid-cols-[3rem_1fr]">
         <NavBar nav={nav} setNav={setNav} />
         <Switch fallback={<div>404</div>}>
           <Match when={nav() === "code"}>
