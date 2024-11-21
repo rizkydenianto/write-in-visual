@@ -14,21 +14,21 @@ export default function NavBar({
         onClick={() => setNav("code")}
         nav={nav}
       >
-        <i class="text-primary-text fa-solid fa-code" />
+        <i class="text-primary-text fa-solid fa-code"></i>
       </Button>
       <Button
         id="canvas"
         onClick={() => setNav("canvas")}
         nav={nav}
       >
-        <i class="text-primary-text fa-solid fa-diagram-project" />
+        <i class="text-primary-text fa-solid fa-diagram-project"></i>
       </Button>
       <Button
         id="profiler"
         onClick={() => setNav("profiler")}
         nav={nav}
       >
-        <i class="text-primary-text fa-solid fa-chart-gantt" />
+        <i class="text-primary-text fa-solid fa-chart-gantt"></i>
       </Button>
     </div>
   )

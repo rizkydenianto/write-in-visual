@@ -1,15 +1,17 @@
 export default function WindowButton({
+  children,
   name,
   onClick
 }: {
+  children: any;
   name: string;
   onClick: Function
 }) {
   return (
     <button
       class={`${name === "x" ? "hover:bg-red-500" : "hover:bg-primary-hover"}
-      grid px-4 text-lg duration-200`}
+      px-3 text-sm duration-200`}
       onClick={() => onClick()}
-    >{name}</button>
+    >{children}</button>
   )
 }

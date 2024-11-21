@@ -1,4 +1,5 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { createSignal, Match, onMount, Switch } from "solid-js";
 import ToolButton from "./ToolButton";
 import WindowButton from "./WindowButton";
 
@@ -25,6 +26,9 @@ import WindowButton from "./WindowButton";
 export default function TitleBar() {
   const appWindow = getCurrentWindow();
 
+  const [isMaximized, setIsMaximized] = createSignal(false);
+  onMount(() => appWindow.onResized(async () => setIsMaximized(await appWindow.isMaximized())));
+
   return (
     <div
       class="flex justify-between h-8 bg-primary-background text-primary-text"
@@ -40,15 +44,28 @@ export default function TitleBar() {
         <WindowButton
           name="_"
           onClick={() => appWindow.minimize()}
-        />
+        >
+          <i class="fa-solid fa-window-minimize"></i>
+        </WindowButton>
         <WindowButton
           name="o"
           onClick={() => appWindow.toggleMaximize()}
-        />
+        >
+          <Switch>
+            <Match when={isMaximized()}>
+              <i class="fa-solid fa-window-restore"></i>
+            </Match>
+            <Match when={!isMaximized()}>
+              <i class="fa-solid fa-window-maximize"></i>
+            </Match>
+          </Switch>
+        </WindowButton>
         <WindowButton
           name="x"
           onClick={() => appWindow.close()}
-        />
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </WindowButton>
       </div>
     </div>
   )
