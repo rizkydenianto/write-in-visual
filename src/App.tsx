@@ -1,7 +1,5 @@
-import { createSignal } from "solid-js";
-import logo from "./assets/logo.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import TitleBar from "./component/TitleBar";
 
 function App() {
   // const [greetMsg, setGreetMsg] = createSignal("");
@@ -13,8 +11,8 @@ function App() {
   // }
 
   return (
-    <main class="bg-red-500">
-      xxx
+    <main class="flex flex-col">
+      <TitleBar />
     </main>
   );
 }
