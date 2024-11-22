@@ -7,12 +7,14 @@ export default function Content({
   nav,
   setNav,
   setActiveTool,
-  folderPath
+  folderPath,
+  setFolderPath
 }: {
   nav: Function;
   setNav: Function;
   setActiveTool: Function;
   folderPath: Function;
+  setFolderPath: Function;
 }) {
   let ref: undefined | HTMLDivElement;
   onMount(() => { if (ref) ref.addEventListener("click", () => setActiveTool(null)) });
@@ -27,7 +29,7 @@ export default function Content({
         setNav={setNav}
         folderPath={folderPath}
       />
-      <Switch fallback={<Welcome />}>
+      <Switch fallback={<Welcome setNav={setNav} setFolderPath={setFolderPath} />}>
         <Match when={nav() === "code"}>
           <Code />
         </Match>

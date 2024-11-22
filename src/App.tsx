@@ -22,6 +22,7 @@ function App() {
         setNav={setNav}
         setActiveTool={setActiveTool}
         folderPath={folderPath}
+        setFolderPath={setFolderPath}
       />
     </main>
   );
