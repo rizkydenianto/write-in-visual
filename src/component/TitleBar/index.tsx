@@ -56,7 +56,10 @@ export default function TitleBar({
         >
           <Switch>
             <Match when={activeTool() === "file"}>
-              <FileMenu parentHeight={height} />
+              <FileMenu
+                parentHeight={height}
+                setActiveTool={setActiveTool}
+              />
             </Match>
           </Switch>
         </ToolButton>
