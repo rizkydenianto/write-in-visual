@@ -13,8 +13,9 @@ function App() {
   //   setGreetMsg(await invoke("greet", { name: name() }));
   // }
 
-  const [nav, setNav] = createSignal<"code" | "canvas" | "profiler">("code");
+  const [nav, setNav] = createSignal<null | "code" | "canvas" | "profiler">(null);
   const [activeTool, setActiveTool] = createSignal<null | "file" | "edit" | "run" | "help">(null);
+  const [project, setProject] = createSignal<null | string>(null);
 
   return (
     <main class="grid grid-rows-[auto_1fr] h-screen">
@@ -26,6 +27,7 @@ function App() {
         nav={nav}
         setNav={setNav}
         setActiveTool={setActiveTool}
+        project={project}
       />
     </main>
   );

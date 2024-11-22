@@ -1,14 +1,18 @@
 import { Match, onMount, Switch } from "solid-js";
+import Code from "./component/Code";
 import NavBar from "./component/NavBar";
+import Welcome from "./component/Welcome";
 
 export default function Content({
   nav,
   setNav,
-  setActiveTool
+  setActiveTool,
+  project
 }: {
   nav: Function;
   setNav: Function;
   setActiveTool: Function;
+  project: Function;
 }) {
   let ref: undefined | HTMLDivElement;
   onMount(() => { if (ref) ref.addEventListener("click", () => setActiveTool(null)) });
@@ -18,10 +22,14 @@ export default function Content({
       ref={ref}
       class="grid grid-cols-[3rem_1fr]"
     >
-      <NavBar nav={nav} setNav={setNav} />
-      <Switch fallback={<div>404</div>}>
+      <NavBar
+        nav={nav}
+        setNav={setNav}
+        project={project}
+      />
+      <Switch fallback={<Welcome />}>
         <Match when={nav() === "code"}>
-          <div>Code</div>
+          <Code />
         </Match>
         <Match when={nav() === "canvas"}>
           <div>Canvas</div>

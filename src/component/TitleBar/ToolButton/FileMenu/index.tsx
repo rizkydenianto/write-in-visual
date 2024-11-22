@@ -1,9 +1,12 @@
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import MenuButton from "../MenuButton";
 import MenuContainer from "../MenuContainer";
 
 export default function FileMenu({ parentHeight }: {
   parentHeight: Function;
 }) {
+  const appWindow = getCurrentWindow();
+
   return (
     <MenuContainer parentHeight={parentHeight}>
       <MenuButton
@@ -20,7 +23,7 @@ export default function FileMenu({ parentHeight }: {
       />
       <MenuButton
         name="Exit"
-        onClick={() => { }}
+        onClick={() => appWindow.close()}
       />
     </MenuContainer>
   )
