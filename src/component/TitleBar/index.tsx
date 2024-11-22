@@ -1,6 +1,7 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { createSignal, Match, onMount, Switch } from "solid-js";
 import ToolButton from "./ToolButton";
+import FileMenu from "./ToolButton/FileMenu";
 import WindowButton from "./WindowButton";
 
 /**
@@ -23,22 +24,57 @@ import WindowButton from "./WindowButton";
  * - Maximize window: Maximizes or restores the window.
  * - Close window: Closes the window.
  */
-export default function TitleBar() {
+export default function TitleBar({
+  activeTool,
+  setActiveTool
+}: {
+  activeTool: Function;
+  setActiveTool: Function;
+}) {
   const appWindow = getCurrentWindow();
 
   const [isMaximized, setIsMaximized] = createSignal(false);
   onMount(() => appWindow.onResized(async () => setIsMaximized(await appWindow.isMaximized())));
 
+  let ref: undefined | HTMLDivElement;
+  const [height, setHeight] = createSignal(0);
+  onMount(() => { if (ref) setHeight(ref.clientHeight) });
+
   return (
     <div
+      ref={ref}
       class="flex justify-between h-8 bg-primary-background text-primary-text"
       data-tauri-drag-region
     >
       <div class="grid grid-cols-4">
-        <ToolButton name="File" onClick={() => { }} />
-        <ToolButton name="Edit" onClick={() => { }} />
-        <ToolButton name="Run" onClick={() => { }} />
-        <ToolButton name="Help" onClick={() => { }} />
+        <ToolButton
+          name="File"
+          onClick={() => setActiveTool("file")}
+        >
+          <Switch>
+            <Match when={activeTool() === "file"}>
+              <FileMenu parentHeight={height} />
+            </Match>
+          </Switch>
+        </ToolButton>
+        <ToolButton
+          name="Edit"
+          onClick={() => setActiveTool("edit")}
+        >
+          <></>
+        </ToolButton>
+        <ToolButton
+          name="Run"
+          onClick={() => setActiveTool("run")}
+        >
+          <></>
+        </ToolButton>
+        <ToolButton
+          name="Help"
+          onClick={() => setActiveTool("help")}
+        >
+          <></>
+        </ToolButton>
       </div>
       <div class="grid grid-cols-3">
         <WindowButton

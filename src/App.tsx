@@ -1,8 +1,8 @@
 import "@fortawesome/fontawesome-free/css/all.css";
-import { createSignal, Match, Switch } from "solid-js";
+import { createSignal } from "solid-js";
 import "./App.css";
-import NavBar from "./component/NavBar";
 import TitleBar from "./component/TitleBar";
+import Content from "./Content";
 
 function App() {
   // const [greetMsg, setGreetMsg] = createSignal("");
@@ -14,24 +14,19 @@ function App() {
   // }
 
   const [nav, setNav] = createSignal<"code" | "canvas" | "profiler">("code");
+  const [activeTool, setActiveTool] = createSignal<null | "file" | "edit" | "run" | "help">(null);
 
   return (
     <main class="grid grid-rows-[auto_1fr] h-screen">
-      <TitleBar />
-      <div class="grid grid-cols-[3rem_1fr]">
-        <NavBar nav={nav} setNav={setNav} />
-        <Switch fallback={<div>404</div>}>
-          <Match when={nav() === "code"}>
-            <div>Code</div>
-          </Match>
-          <Match when={nav() === "canvas"}>
-            <div>Canvas</div>
-          </Match>
-          <Match when={nav() === "profiler"}>
-            <div>Profiler</div>
-          </Match>
-        </Switch>
-      </div>
+      <TitleBar
+        activeTool={activeTool}
+        setActiveTool={setActiveTool}
+      />
+      <Content
+        nav={nav}
+        setNav={setNav}
+        setActiveTool={setActiveTool}
+      />
     </main>
   );
 }

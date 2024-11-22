@@ -1,4 +1,4 @@
-export default function ToolButton({
+export default function MenuButton({
   name,
   onClick
 }: {
@@ -7,7 +7,7 @@ export default function ToolButton({
 }) {
   return (
     <button
-      class="px-2 text-xs duration-200 hover:bg-primary-hover"
+      class="py-2 w-20 text-xs duration-200 hover:bg-primary-hover"
       onClick={() => onClick()}
     >{name}</button>
   )
