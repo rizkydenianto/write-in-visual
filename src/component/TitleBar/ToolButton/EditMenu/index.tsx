@@ -1,25 +1,27 @@
 import MenuButton from "../MenuButton";
 import MenuContainer from "../MenuContainer";
 
-export default function FileMenu({ parentHeight }: {
-  parentHeight: Function;
-}) {
+export default function EditMenu({ parentHeight }: { parentHeight: Function; }) {
   return (
     <MenuContainer parentHeight={parentHeight}>
       <MenuButton
-        name="New"
+        name="Undo"
         onClick={() => { }}
       />
       <MenuButton
-        name="Open"
+        name="Redo"
         onClick={() => { }}
       />
       <MenuButton
-        name="Save"
+        name="Cut"
         onClick={() => { }}
       />
       <MenuButton
-        name="Exit"
+        name="Copy"
+        onClick={() => { }}
+      />
+      <MenuButton
+        name="Paste"
         onClick={() => { }}
       />
     </MenuContainer>

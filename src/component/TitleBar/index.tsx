@@ -1,7 +1,10 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { createSignal, Match, onMount, Switch } from "solid-js";
 import ToolButton from "./ToolButton";
+import EditMenu from "./ToolButton/EditMenu";
 import FileMenu from "./ToolButton/FileMenu";
+import HelpMenu from "./ToolButton/HelpMenu";
+import RunMenu from "./ToolButton/RunMenu";
 import WindowButton from "./WindowButton";
 
 /**
@@ -61,19 +64,31 @@ export default function TitleBar({
           name="Edit"
           onClick={() => setActiveTool("edit")}
         >
-          <></>
+          <Switch>
+            <Match when={activeTool() === "edit"}>
+              <EditMenu parentHeight={height} />
+            </Match>
+          </Switch>
         </ToolButton>
         <ToolButton
           name="Run"
           onClick={() => setActiveTool("run")}
         >
-          <></>
+          <Switch>
+            <Match when={activeTool() === "run"}>
+              <RunMenu parentHeight={height} />
+            </Match>
+          </Switch>
         </ToolButton>
         <ToolButton
           name="Help"
           onClick={() => setActiveTool("help")}
         >
-          <></>
+          <Switch>
+            <Match when={activeTool() === "help"}>
+              <HelpMenu parentHeight={height} />
+            </Match>
+          </Switch>
         </ToolButton>
       </div>
       <div class="grid grid-cols-3">

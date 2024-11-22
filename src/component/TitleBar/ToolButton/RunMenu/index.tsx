@@ -1,25 +1,15 @@
 import MenuButton from "../MenuButton";
 import MenuContainer from "../MenuContainer";
 
-export default function FileMenu({ parentHeight }: {
-  parentHeight: Function;
-}) {
+export default function RunMenu({ parentHeight }: { parentHeight: Function; }) {
   return (
     <MenuContainer parentHeight={parentHeight}>
       <MenuButton
-        name="New"
+        name="Debug"
         onClick={() => { }}
       />
       <MenuButton
-        name="Open"
-        onClick={() => { }}
-      />
-      <MenuButton
-        name="Save"
-        onClick={() => { }}
-      />
-      <MenuButton
-        name="Exit"
+        name="No Debug"
         onClick={() => { }}
       />
     </MenuContainer>
