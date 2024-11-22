@@ -5,10 +5,14 @@ import MenuContainer from "../MenuContainer";
 
 export default function FileMenu({
   parentHeight,
-  setActiveTool
+  setNav,
+  setActiveTool,
+  setFolderPath
 }: {
   parentHeight: Function;
+  setNav: Function;
   setActiveTool: Function;
+  setFolderPath: Function;
 }) {
   const appWindow = getCurrentWindow();
 
@@ -23,6 +27,10 @@ export default function FileMenu({
         onClick={async () => {
           setActiveTool(null);
           const path = await invoke("open_file");
+          if (path) {
+            setFolderPath(path);
+            setNav("code");
+          }
         }}
       />
       <MenuButton
@@ -30,11 +38,27 @@ export default function FileMenu({
         onClick={async () => {
           setActiveTool(null);
           const path = await invoke("open_folder");
+          if (path) {
+            setFolderPath(path);
+            setNav("code");
+          }
         }}
       />
       <MenuButton
         name="Save"
         onClick={() => { }}
+      />
+      <MenuButton
+        name="Save As"
+        onClick={() => { }}
+      />
+      <MenuButton
+        name="Close Folder"
+        onClick={() => {
+          setNav(null);
+          setActiveTool(null);
+          setFolderPath(null);
+        }}
       />
       <MenuButton
         name="Exit"

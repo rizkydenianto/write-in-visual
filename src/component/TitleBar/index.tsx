@@ -7,32 +7,16 @@ import HelpMenu from "./ToolButton/HelpMenu";
 import RunMenu from "./ToolButton/RunMenu";
 import WindowButton from "./WindowButton";
 
-/**
- * A component to render the title bar of the main window.
- *
- * It is a horizontal bar that contains a list of tool buttons and a list of
- * window control buttons. The tool buttons are on the left and the window
- * control buttons are on the right.
- *
- * The tool buttons are for the following commands:
- *
- * - File: Opens the file menu.
- * - Edit: Opens the edit menu.
- * - Run: Runs the code.
- * - Help: Opens the help menu.
- *
- * The window control buttons are for the following commands:
- *
- * - Minimize window: Minimizes the window.
- * - Maximize window: Maximizes or restores the window.
- * - Close window: Closes the window.
- */
 export default function TitleBar({
+  setNav,
   activeTool,
-  setActiveTool
+  setActiveTool,
+  setFolderPath
 }: {
+  setNav: Function;
   activeTool: Function;
   setActiveTool: Function;
+  setFolderPath: Function;
 }) {
   const appWindow = getCurrentWindow();
 
@@ -58,7 +42,9 @@ export default function TitleBar({
             <Match when={activeTool() === "file"}>
               <FileMenu
                 parentHeight={height}
+                setNav={setNav}
                 setActiveTool={setActiveTool}
+                setFolderPath={setFolderPath}
               />
             </Match>
           </Switch>
