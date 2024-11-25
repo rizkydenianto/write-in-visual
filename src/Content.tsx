@@ -23,7 +23,7 @@ export default function Content({
   return (
     <div
       ref={ref}
-      class="grid grid-cols-[3rem_1fr]"
+      class="grid grid-cols-[3rem_1fr] overflow-hidden"
     >
       <NavBar
         nav={nav}
