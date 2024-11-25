@@ -12,18 +12,18 @@ export default function NavBar({
   return (
     <div class="flex flex-col bg-primary-background">
       <Button
-        id="code"
-        onClick={() => { if (folderPath()) setNav("code") }}
-        nav={nav}
-      >
-        <i class="text-primary-text fa-solid fa-code"></i>
-      </Button>
-      <Button
         id="canvas"
         onClick={() => { if (folderPath()) setNav("canvas") }}
         nav={nav}
       >
         <i class="text-primary-text fa-solid fa-diagram-project"></i>
+      </Button>
+      <Button
+        id="code"
+        onClick={() => { if (folderPath()) setNav("code") }}
+        nav={nav}
+      >
+        <i class="text-primary-text fa-solid fa-code"></i>
       </Button>
       <Button
         id="profiler"

@@ -16,7 +16,7 @@ export default function Welcome({
       <div class="flex items-center gap-8 mt-8 text-sm">
         <button
           class="px-6 py-3 bg-primary-background text-primary-text rounded"
-          onClick={() => setNav("code")}
+          onClick={() => setNav("canvas")}
         >Create a new project</button>
         <p>or</p>
         <button
@@ -25,10 +25,10 @@ export default function Welcome({
             const path = await invoke("open_folder");
             if (path) {
               setFolderPath(path);
-              setNav("code");
+              setNav("canvas");
             }
           }}
-        >open an existing one</button>
+        >Open an existing one</button>
       </div>
     </div>
   )

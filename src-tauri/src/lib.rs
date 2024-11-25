@@ -2,6 +2,7 @@
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 use title_bar::file_menu::{open_file, open_folder};
 
+mod file_management;
 mod title_bar;
 
 pub fn run() {

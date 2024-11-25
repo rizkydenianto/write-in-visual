@@ -1,4 +1,5 @@
 import { Match, onMount, Switch } from "solid-js";
+import Canvas from "./component/Canvas";
 import Code from "./component/Code";
 import NavBar from "./component/NavBar";
 import Welcome from "./component/Welcome";
@@ -30,11 +31,11 @@ export default function Content({
         folderPath={folderPath}
       />
       <Switch fallback={<Welcome setNav={setNav} setFolderPath={setFolderPath} />}>
+        <Match when={nav() === "canvas"}>
+          <Canvas />
+        </Match>
         <Match when={nav() === "code"}>
           <Code />
-        </Match>
-        <Match when={nav() === "canvas"}>
-          <div>Canvas</div>
         </Match>
         <Match when={nav() === "profiler"}>
           <div>Profiler</div>

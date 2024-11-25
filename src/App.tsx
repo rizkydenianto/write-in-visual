@@ -5,7 +5,7 @@ import TitleBar from "./component/TitleBar";
 import Content from "./Content";
 
 function App() {
-  const [nav, setNav] = createSignal<null | "code" | "canvas" | "profiler">(null);
+  const [nav, setNav] = createSignal<null | "canvas" | "code" | "profiler">(null);
   const [activeTool, setActiveTool] = createSignal<null | "file" | "edit" | "run" | "help">(null);
   const [folderPath, setFolderPath] = createSignal<null | string>(null);
 
