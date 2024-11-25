@@ -16,7 +16,10 @@ export default function Welcome({
       <div class="flex items-center gap-8 mt-8 text-sm">
         <button
           class="px-6 py-3 bg-primary-background text-primary-text rounded"
-          onClick={() => setNav("canvas")}
+          onClick={() => {
+            setFolderPath("")
+            setNav("canvas");
+          }}
         >Create a new project</button>
         <p>or</p>
         <button

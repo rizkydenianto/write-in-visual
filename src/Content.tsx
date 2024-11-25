@@ -18,7 +18,7 @@ export default function Content({
   setFolderPath: Function;
 }) {
   let ref: undefined | HTMLDivElement;
-  onMount(() => { if (ref) ref.addEventListener("click", () => setActiveTool(null)) });
+  onMount(() => { if (ref) ref.onclick = () => setActiveTool(null) });
 
   return (
     <div
