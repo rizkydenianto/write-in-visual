@@ -1,8 +1,8 @@
 import { Match, onMount, Switch } from "solid-js";
-import Canvas from "./component/Canvas";
-import Code from "./component/Code";
-import NavBar from "./component/NavBar";
-import Welcome from "./component/Welcome";
+import Canvas from "./components/Canvas";
+import Code from "./components/Code";
+import NavBar from "./components/NavBar";
+import Welcome from "./components/Welcome";
 
 export default function Content({
   nav,

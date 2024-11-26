@@ -1,8 +1,8 @@
 import "@fortawesome/fontawesome-free/css/all.css";
 import { createSignal } from "solid-js";
 import "./App.css";
-import TitleBar from "./component/TitleBar";
 import Content from "./Content";
+import TitleBar from "./components/TitleBar";
 
 function App() {
   const [nav, setNav] = createSignal<null | "canvas" | "code" | "profiler">(null);
