@@ -1,6 +1,7 @@
 import { Match, onMount, Switch } from "solid-js";
 import Canvas from "./components/Canvas";
 import Code from "./components/Code";
+import CodeBlockContainer from "./components/CodeBlockContainer";
 import NavBar from "./components/NavBar";
 import Welcome from "./components/Welcome";
 
@@ -23,7 +24,7 @@ export default function Content({
   return (
     <div
       ref={ref}
-      class="grid grid-cols-[3rem_1fr] overflow-hidden"
+      class="grid grid-cols-[3rem_1fr]"
     >
       <NavBar
         nav={nav}
@@ -32,7 +33,10 @@ export default function Content({
       />
       <Switch fallback={<Welcome setNav={setNav} setFolderPath={setFolderPath} />}>
         <Match when={nav() === "canvas"}>
-          <Canvas />
+          <div class="grid grid-cols-[1fr_15rem]">
+            <Canvas />
+            <CodeBlockContainer />
+          </div>
         </Match>
         <Match when={nav() === "code"}>
           <Code />

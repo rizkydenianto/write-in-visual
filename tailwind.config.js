@@ -12,6 +12,11 @@ export default {
           hover: "#1a2e05",
           text: "#ffffff",
         },
+        secondary: {
+          background: "#84cc16",
+          hover: "#65a30d",
+          text: "#ffffff",
+        }
       },
     },
   },

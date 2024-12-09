@@ -12,16 +12,19 @@ export default function Canvas() {
       ref.oncontextmenu = (e) => e.preventDefault();
 
       // Set canvas dimension
-      appWindow.onResized(async () => {
+      const setCanvasDimension = async () => {
         const windowSize = await appWindow.innerSize();
         setDimension({ width: windowSize.width, height: windowSize.height })
-      });
+      };
+      setCanvasDimension();
+      appWindow.onResized(async () => setCanvasDimension());
     }
   });
 
   return (
     <canvas
       ref={ref}
+      class="w-full h-full"
       width={dimension().width}
       height={dimension().height}
     ></canvas>
