@@ -21,13 +21,14 @@ export default function End({ getParentDimension }: { getParentDimension: (el: S
         cy={dimension().y / 2}
         fill="white"
         stroke="black"
-        stroke-width={4}
+        stroke-width={2}
       />
       <text
         x={dimension().x / 2}
         y={dimension().y / 2}
         text-anchor="middle"
         dominant-baseline="middle"
+        font-size="12px"
       >END</text>
     </svg>
   )

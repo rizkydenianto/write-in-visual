@@ -33,7 +33,7 @@ export default function Content({
       />
       <Switch fallback={<Welcome setNav={setNav} setFolderPath={setFolderPath} />}>
         <Match when={nav() === "canvas"}>
-          <div class="grid grid-cols-[1fr_15rem]">
+          <div class="grid grid-cols-[1fr_8rem]">
             <Canvas />
             <CodeBlockContainer />
           </div>
