@@ -1,5 +1,6 @@
 import { invoke } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { Setter } from "solid-js";
 import MenuButton from "../MenuButton";
 import MenuContainer from "../MenuContainer";
 
@@ -9,10 +10,10 @@ export default function FileMenu({
   setActiveTool,
   setFolderPath
 }: {
-  parentHeight: Function;
-  setNav: Function;
-  setActiveTool: Function;
-  setFolderPath: Function;
+  parentHeight: () => number;
+  setNav: Setter<null | "canvas" | "code" | "profiler">;
+  setActiveTool: Setter<null | "file" | "edit" | "run" | "help">;
+  setFolderPath: Setter<null | string>;
 }) {
   const appWindow = getCurrentWindow();
 
@@ -26,7 +27,7 @@ export default function FileMenu({
         name="Open File"
         onClick={async () => {
           setActiveTool(null);
-          const path = await invoke("open_file");
+          const path = await invoke("open_file") as string;
           if (path) {
             setFolderPath(path);
             setNav("code");
@@ -37,7 +38,7 @@ export default function FileMenu({
         name="Open Folder"
         onClick={async () => {
           setActiveTool(null);
-          const path = await invoke("open_folder");
+          const path = await invoke("open_folder") as string;
           if (path) {
             setFolderPath(path);
             setNav("code");

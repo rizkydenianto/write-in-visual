@@ -5,7 +5,7 @@ export default function WindowButton({
 }: {
   children: any;
   name: string;
-  onClick: Function
+  onClick: () => void;
 }) {
   return (
     <button

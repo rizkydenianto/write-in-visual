@@ -3,7 +3,7 @@ export default function MenuContainer({
   parentHeight
 }: {
   children: any;
-  parentHeight: Function;
+  parentHeight: () => number;
 }) {
   return (
     <div

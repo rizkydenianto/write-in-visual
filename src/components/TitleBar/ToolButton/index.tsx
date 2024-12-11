@@ -5,7 +5,7 @@ export default function ToolButton({
 }: {
   children: any;
   name: string;
-  onClick: Function;
+  onClick: () => void;
 }) {
   return (
     <div class="relative">

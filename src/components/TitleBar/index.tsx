@@ -1,5 +1,5 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
-import { createSignal, Match, onMount, Switch } from "solid-js";
+import { createSignal, Match, onMount, Setter, Switch } from "solid-js";
 import ToolButton from "./ToolButton";
 import EditMenu from "./ToolButton/EditMenu";
 import FileMenu from "./ToolButton/FileMenu";
@@ -13,10 +13,10 @@ export default function TitleBar({
   setActiveTool,
   setFolderPath
 }: {
-  setNav: Function;
-  activeTool: Function;
-  setActiveTool: Function;
-  setFolderPath: Function;
+  setNav: Setter<null | "canvas" | "code" | "profiler">;
+  activeTool: () => null | "file" | "edit" | "run" | "help";
+  setActiveTool: Setter<null | "file" | "edit" | "run" | "help">;
+  setFolderPath: Setter<null | string>;
 }) {
   const appWindow = getCurrentWindow();
 

@@ -1,11 +1,12 @@
 import { invoke } from "@tauri-apps/api/core";
+import { Setter } from "solid-js";
 
 export default function Welcome({
   setNav,
   setFolderPath
 }: {
-  setNav: Function;
-  setFolderPath: Function;
+  setNav: Setter<null | "canvas" | "code" | "profiler">;
+  setFolderPath: Setter<null | string>;
 }) {
   return (
     <div class="flex flex-col justify-center items-center gap-2 text-gray-400">
@@ -25,7 +26,7 @@ export default function Welcome({
         <button
           class="px-6 py-3 bg-primary-background text-primary-text rounded"
           onClick={async () => {
-            const path = await invoke("open_folder");
+            const path = await invoke("open_folder") as string;
             if (path) {
               setFolderPath(path);
               setNav("canvas");

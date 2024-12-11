@@ -3,7 +3,7 @@ export default function MenuButton({
   onClick
 }: {
   name: string;
-  onClick: Function
+  onClick: () => void;
 }) {
   return (
     <button

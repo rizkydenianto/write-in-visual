@@ -1,4 +1,4 @@
-import { Match, onMount, Switch } from "solid-js";
+import { Match, onMount, Setter, Switch } from "solid-js";
 import Canvas from "./components/Canvas";
 import Code from "./components/Code";
 import CodeBlockContainer from "./components/CodeBlockContainer";
@@ -12,11 +12,11 @@ export default function Content({
   folderPath,
   setFolderPath
 }: {
-  nav: Function;
-  setNav: Function;
-  setActiveTool: Function;
-  folderPath: Function;
-  setFolderPath: Function;
+  nav: () => null | "canvas" | "code" | "profiler";
+  setNav: Setter<null | "canvas" | "code" | "profiler">;
+  setActiveTool: Setter<null | "file" | "edit" | "run" | "help">;
+  folderPath: () => null | string;
+  setFolderPath: Setter<null | string>;
 }) {
   let ref: undefined | HTMLDivElement;
   onMount(() => { if (ref) ref.onclick = () => setActiveTool(null) });

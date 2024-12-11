@@ -8,8 +8,8 @@ export default function Button({
 }: {
   children: any;
   id: string;
-  onClick: Function;
-  nav: Function;
+  onClick: () => void;
+  nav: () => null | "canvas" | "code" | "profiler";
 }) {
   // Set the height of the button from the width
   let ref: undefined | HTMLDivElement;

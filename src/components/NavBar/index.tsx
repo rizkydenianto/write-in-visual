@@ -1,3 +1,4 @@
+import { Setter } from "solid-js";
 import Button from "./Button";
 
 export default function NavBar({
@@ -5,9 +6,9 @@ export default function NavBar({
   setNav,
   folderPath
 }: {
-  nav: Function;
-  setNav: Function;
-  folderPath: Function;
+  nav: () => null | "canvas" | "code" | "profiler";
+  setNav: Setter<null | "canvas" | "code" | "profiler">;
+  folderPath: () => null | string;
 }) {
   return (
     <div class="flex flex-col bg-primary-background">
