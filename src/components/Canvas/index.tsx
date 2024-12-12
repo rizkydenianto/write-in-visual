@@ -79,12 +79,62 @@ export default function Canvas({
     }
   });
 
+  // Handle mouse down
+  const [draggingBlock, setDraggingBlock] = createSignal("");
+  const handleMouseDown = (e: MouseEvent) => {
+    if (ref) {
+      const canvasRect = ref.getBoundingClientRect();
+      const mouseX = e.clientX - canvasRect.left;
+      const mouseY = e.clientY - canvasRect.top;
+
+      const codeBlock = canvasData().find(
+        (cb) =>
+          mouseX > cb.position.x
+          && mouseX < cb.position.x + gridSize()
+          && mouseY > cb.position.y
+          && mouseY < cb.position.y + gridSize()
+      );
+      if (codeBlock) setDraggingBlock(codeBlock.id);
+    }
+  };
+
+  // Handle mouse up
+  const handleMouseUp = () => setDraggingBlock("");
+
+  // Snap to grid
+  const snapToGrid = ({ x, y }: { x: number; y: number }) => {
+    return {
+      x: Math.round(x / gridSize()) * gridSize(),
+      y: Math.round(y / gridSize()) * gridSize(),
+    };
+  };
+
+  // Handle mouse move (dragging)
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!draggingBlock()) return;
+
+    if (ref) {
+      const canvasRect = ref.getBoundingClientRect();
+      const mouseX = e.clientX - canvasRect.left;
+      const mouseY = e.clientY - canvasRect.top;
+      const newPosition = snapToGrid({ x: mouseX, y: mouseY });
+
+      setCanvasData(canvasData().map((cb) => {
+        if (cb.id === draggingBlock()) return { ...cb, position: newPosition };
+        return cb;
+      }));
+    }
+  };
+
   return (
     <canvas
       ref={ref}
       class="w-full h-full"
       width={dimension().width}
       height={dimension().height}
+      onMouseDown={e => handleMouseDown(e)}
+      onMouseUp={() => handleMouseUp()}
+      onMouseMove={e => handleMouseMove(e)}
     ></canvas>
   )
 }

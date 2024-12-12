@@ -11,13 +11,15 @@ export default function Content({
   setNav,
   setActiveTool,
   folderPath,
-  setFolderPath
+  setFolderPath,
+  setResetCanvas
 }: {
   nav: () => null | "canvas" | "code" | "profiler";
   setNav: Setter<null | "canvas" | "code" | "profiler">;
   setActiveTool: Setter<null | "file" | "edit" | "run" | "help">;
   folderPath: () => null | string;
   setFolderPath: Setter<null | string>;
+  setResetCanvas: Setter<() => void>;
 }) {
   let ref: undefined | HTMLDivElement;
   onMount(() => { if (ref) ref.onclick = () => setActiveTool(null) });
@@ -40,6 +42,14 @@ export default function Content({
     position: { x: number; y: number };
     dimension: { x: number; y: number };
   }[]>([{ "id": uuidv4(), "code-block-id": "start", position: { x: 0, y: 0 }, dimension: { x: 100, y: 100 } }]);
+
+  // Reset canvas
+  onMount(() => {
+    setResetCanvas(() => () => {
+      setCodeBlockData({ "start": { "path": "", "change": false }, "end": { "path": "", "change": false } });
+      setCanvasData([{ "id": uuidv4(), "code-block-id": "start", position: { x: 0, y: 0 }, dimension: { x: 100, y: 100 } }]);
+    });
+  });
 
   return (
     <div

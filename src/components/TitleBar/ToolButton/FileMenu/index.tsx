@@ -8,12 +8,14 @@ export default function FileMenu({
   parentHeight,
   setNav,
   setActiveTool,
-  setFolderPath
+  setFolderPath,
+  resetCanvas
 }: {
   parentHeight: () => number;
   setNav: Setter<null | "canvas" | "code" | "profiler">;
   setActiveTool: Setter<null | "file" | "edit" | "run" | "help">;
   setFolderPath: Setter<null | string>;
+  resetCanvas: () => () => void;
 }) {
   const appWindow = getCurrentWindow();
 
@@ -59,6 +61,7 @@ export default function FileMenu({
           setNav(null);
           setActiveTool(null);
           setFolderPath(null);
+          resetCanvas()();
         }}
       />
       <MenuButton

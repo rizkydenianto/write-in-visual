@@ -8,6 +8,7 @@ function App() {
   const [nav, setNav] = createSignal<null | "canvas" | "code" | "profiler">(null);
   const [activeTool, setActiveTool] = createSignal<null | "file" | "edit" | "run" | "help">(null);
   const [folderPath, setFolderPath] = createSignal<null | string>(null);
+  const [resetCanvas, setResetCanvas] = createSignal(() => { });
 
   return (
     <main class="grid grid-rows-[auto_1fr] h-screen">
@@ -16,6 +17,7 @@ function App() {
         activeTool={activeTool}
         setActiveTool={setActiveTool}
         setFolderPath={setFolderPath}
+        resetCanvas={resetCanvas}
       />
       <Content
         nav={nav}
@@ -23,6 +25,7 @@ function App() {
         setActiveTool={setActiveTool}
         folderPath={folderPath}
         setFolderPath={setFolderPath}
+        setResetCanvas={setResetCanvas}
       />
     </main>
   );

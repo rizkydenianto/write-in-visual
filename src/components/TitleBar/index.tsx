@@ -11,12 +11,14 @@ export default function TitleBar({
   setNav,
   activeTool,
   setActiveTool,
-  setFolderPath
+  setFolderPath,
+  resetCanvas
 }: {
   setNav: Setter<null | "canvas" | "code" | "profiler">;
   activeTool: () => null | "file" | "edit" | "run" | "help";
   setActiveTool: Setter<null | "file" | "edit" | "run" | "help">;
   setFolderPath: Setter<null | string>;
+  resetCanvas: () => () => void;
 }) {
   const appWindow = getCurrentWindow();
 
@@ -45,6 +47,7 @@ export default function TitleBar({
                 setNav={setNav}
                 setActiveTool={setActiveTool}
                 setFolderPath={setFolderPath}
+                resetCanvas={resetCanvas}
               />
             </Match>
           </Switch>
