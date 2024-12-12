@@ -90,9 +90,9 @@ export default function Canvas({
       const codeBlock = canvasData().find(
         (cb) =>
           mouseX > cb.position.x
-          && mouseX < cb.position.x + gridSize()
+          && mouseX < cb.position.x + cb.dimension.x
           && mouseY > cb.position.y
-          && mouseY < cb.position.y + gridSize()
+          && mouseY < cb.position.y + cb.dimension.y
       );
       if (codeBlock) setDraggingBlock(codeBlock.id);
     }
@@ -120,7 +120,14 @@ export default function Canvas({
       const newPosition = snapToGrid({ x: mouseX, y: mouseY });
 
       setCanvasData(canvasData().map((cb) => {
-        if (cb.id === draggingBlock()) return { ...cb, position: newPosition };
+        if (cb.id === draggingBlock()) {
+          return {
+            ...cb, position: {
+              x: newPosition.x - cb.dimension.x / 2,
+              y: newPosition.y - cb.dimension.y / 2
+            }
+          };
+        }
         return cb;
       }));
     }
@@ -129,7 +136,6 @@ export default function Canvas({
   return (
     <canvas
       ref={ref}
-      class="w-full h-full"
       width={dimension().width}
       height={dimension().height}
       onMouseDown={e => handleMouseDown(e)}
