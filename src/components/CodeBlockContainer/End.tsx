@@ -1,6 +1,12 @@
 import { createSignal, onMount } from "solid-js";
 
-export default function End({ getParentDimension }: { getParentDimension: (el: SVGSVGElement) => { x: number, y: number } }) {
+export default function End({
+  getParentDimension,
+  onClick
+}: {
+  getParentDimension: (el: SVGSVGElement) => { x: number, y: number },
+  onClick: () => void;
+}) {
   let ref: undefined | SVGSVGElement;
   const [dimension, setDimension] = createSignal({
     x: 0,
@@ -14,6 +20,7 @@ export default function End({ getParentDimension }: { getParentDimension: (el: S
       xmlns="http://www.w3.org/2000/svg"
       width={dimension().x}
       height={dimension().y}
+      onClick={() => onClick()}
     >
       <circle
         r={dimension().y / 2.5}

@@ -1,4 +1,5 @@
-import { Match, onMount, Setter, Switch } from "solid-js";
+import { createSignal, Match, onMount, Setter, Switch } from "solid-js";
+import { v4 as uuidv4 } from "uuid";
 import Canvas from "./components/Canvas";
 import Code from "./components/Code";
 import CodeBlockContainer from "./components/CodeBlockContainer";
@@ -21,6 +22,25 @@ export default function Content({
   let ref: undefined | HTMLDivElement;
   onMount(() => { if (ref) ref.onclick = () => setActiveTool(null) });
 
+  // Code block data
+  const [codeBlockData, setCodeBlockData] = createSignal<{
+    [_: string]: {
+      "path": string;
+      "change": boolean;
+    }
+  }>({
+    "start": { "path": "", "change": false },
+    "end": { "path": "", "change": false }
+  });
+
+  // Canvas data
+  const [canvasData, setCanvasData] = createSignal<{
+    "id": string;
+    "code-block-id": string;
+    position: { x: number; y: number };
+    dimension: { x: number; y: number };
+  }[]>([{ "id": uuidv4(), "code-block-id": "start", position: { x: 0, y: 0 }, dimension: { x: 100, y: 100 } }]);
+
   return (
     <div
       ref={ref}
@@ -34,8 +54,12 @@ export default function Content({
       <Switch fallback={<Welcome setNav={setNav} setFolderPath={setFolderPath} />}>
         <Match when={nav() === "canvas"}>
           <div class="grid grid-cols-[1fr_8rem]">
-            <Canvas />
-            <CodeBlockContainer />
+            <Canvas
+              codeBlockData={codeBlockData}
+              canvasData={canvasData}
+              setCanvasData={setCanvasData}
+            />
+            <CodeBlockContainer setCanvasData={setCanvasData} />
           </div>
         </Match>
         <Match when={nav() === "code"}>
